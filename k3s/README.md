@@ -46,7 +46,7 @@ curl -sfL https://get.k3s.io | K3S_NODE_NAME=k3s-worker-01 K3S_URL=https://<IP>:
 
 Third, we need to create certificate for our application.
 
-1. Installing cert-manager:
+Installing cert-manager:
 ```
 curl -sL \
 https://github.com/jetstack/cert-manager/releases/latest/download/cert-manager.yaml |\
@@ -55,12 +55,12 @@ sed -r 's/(image:.*):(v.*)$/\1-arm:\2/g' > cert-manager-arm.yaml
 ```
 kubectl apply -f cert-manager-arm.yaml
 ```
-2.
+
 Configuring cert-manager to use Lets Encrypt:
 ```
 kubectl apply -f letsencrypt-issuer.yaml
 ```
-3.
+
 Request a certificate for our website:
 ```
 kubectl apply -f cert-manager-arm.yaml
