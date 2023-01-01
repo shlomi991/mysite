@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
       - name: second-mysite
-        image: shlomi99/fabric:kube
+        image: shlomi99/fabric:shlo
         ports:
         - containerPort: 5000
           name: http
@@ -116,69 +116,3 @@ roleRef:
   kind: ClusterRole
   name: pods-list
   apiGroup: rbac.authorization.k8s.io
-
-
-
-
-
-# ---
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: kube-json-deployment
-#   namespace: fabric
-# spec:
-#   replicas: 2
-#   selector:
-#     matchLabels:
-#       app: kube-json
-#   template:
-#     metadata:
-#       labels:
-#         app: kube-json
-#     spec:
-#       containers:
-#         - name: kube-json
-#           image: shlomi99/fabric:kube
-#           resources:
-#             requests:
-#               memory: "64Mi"
-#               cpu: "100m"
-#             limits:
-#               memory: "128Mi"
-#               cpu: "500m"
-#           ports:
-#           - containerPort: 8080
-#           imagePullPolicy: Always
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: kube-json-service
-#   namespace: fabric
-# spec:
-#   ports:
-#   - port: 80
-#     targetPort: 8080
-#     name: tcp
-#   selector:
-#     app: kube-json
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: kube-json-ingress
-#   namespace: fabric
-#   annotations:
-#     kubernetes.io/ingress.class: "traefik"
-# spec:
-#   rules:
-#   - http:
-#       paths:
-#       - path: /
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: kube-json-service
-#             port:
-#               number: 80
