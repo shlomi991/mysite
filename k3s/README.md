@@ -1,4 +1,4 @@
-# Deploy
+# Deploy our app
 
 ## Multipass
 
